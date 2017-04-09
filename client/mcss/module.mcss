@@ -1,0 +1,7 @@
+.m-info{
+	padding:20px;font-size:14px;color:#ccc;
+	.blk{
+		width:100%;border-radius:4px;background:#fff;height:40px;line-height:40px;margin-bottom:12px;
+		.txt{padding-left:40px;width:100%;height:100%;letter-spacing:1px;}
+	}
+}
