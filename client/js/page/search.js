@@ -1,1 +1,0 @@
-let regular = regular('regularjs')

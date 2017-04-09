@@ -1,7 +1,47 @@
 .m-info{
-	padding:20px;font-size:14px;color:#ccc;
+	background:#f7f7f7;padding:20px;font-size:14px;
 	.blk{
 		width:100%;border-radius:4px;background:#fff;height:40px;line-height:40px;margin-bottom:12px;
-		.txt{padding-left:40px;width:100%;height:100%;letter-spacing:1px;}
+		input{padding-left:40px;width:100%;height:100%;border:0;}
+		input[disabled]{background:#fff}
 	}
+}
+
+.m-drive{
+	width:100%;
+	.item{
+		float:left;width:33.3%;border-right:1px solid #ddd;border-top:1px solid #ddd;border-bottom:1px solid #ddd;
+		.ttl{height:38px;line-height:38px;text-align:center;}
+		.img{width:40px;height:40px;margin:0 auto 10px;}
+	}
+	.item-1{
+		color:#ff9900;
+		&-active{border-top:1px solid #ff9900;border-bottom:1px solid transparent;}
+	}
+	.item-2{
+		color:#009933;
+		&-active{border-top:1px solid #009933;border-bottom:1px solid transparent;}
+	}
+	.item-3{
+		color:#3300ff;border-right:0;
+		&-active{border-top:1px solid #3300ff;border-bottom:1px solid transparent;}
+	}
+}
+
+.m-trip{
+	padding:10px;font-size:14px;
+	.ln{
+		float:left;width:100%;height:32px;line-height:32px;
+		&-1{width:50%;}
+		.wrd{padding-left:15px;}
+	}
+}
+
+.m-plan{
+	margin:0 10px;background:#ffcc66;padding-left:40px;line-height:24px;font-size:14px;
+	b{color:#ff3300;}
+}
+
+.m-confirm{
+	margin-top:10px;
 }
