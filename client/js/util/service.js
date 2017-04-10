@@ -54,7 +54,7 @@ let service = {
 				
 		// 	});
 		// });
-		return fetch('http://122.224.104.142:9913/rest/record',{
+		return fetch('http://122.224.104.142:9913/odhbase/rest/record',{
 			method:'POST',
 			data:data
 		});
