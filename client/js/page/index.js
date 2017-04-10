@@ -31,7 +31,10 @@ const app = Regular.extend({
     initMap(){
     	let data = this.data;
 		let ac = new BMap.Autocomplete(
-			{"input" : "suggestId"}
+			{
+                input:"suggestId",
+                location:'杭州'
+            }
 		);
 		ac.addEventListener("onconfirm", function(event) {
 			let value = event.item.value;
