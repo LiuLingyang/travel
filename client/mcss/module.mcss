@@ -13,19 +13,20 @@
 .m-drive{
 	width:100%;
 	.item{
-		float:left;width:33.3%;border-right:1px solid #ddd;border-top:1px solid #ddd;border-bottom:1px solid #ddd;
+		position:relative;float:left;width:33.3%;border-right:1px solid #ddd;border-top:1px solid #ddd;border-bottom:1px solid #ddd;
 		.ttl{height:38px;line-height:38px;text-align:center;}
 		.img{width:60px;height:40px;margin:0 auto 10px;}
 	}
 	.item-1{
 		color:#fbb121;
-		&-active{border-top:1px solid #ff9900;border-bottom:1px solid transparent;}
+		&-active{border-top:1px solid #fbb121;border-bottom:1px solid transparent;}
 		.img{background-position:4px -63px;}
 	}
 	.item-2{
 		color:#08bd04;
 		&-active{border-top:1px solid #08bd04;border-bottom:1px solid transparent;}
 		.img{background-position:11px 0;}
+		.u-trig{border-color: #08bd04 transparent transparent #08bd04;}
 	}
 	.item-3{
 		color:#56c0ea;border-right:0;

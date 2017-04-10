@@ -1,3 +1,8 @@
 .u-btn{
 	text-align:center;width:190px;height:38px;line-height:38px;letter-spacing:1px;border-radius:4px;background:#ff9900;margin:0 auto;cursor:pointer;color:#fff;
 }
+.u-trig{
+	position:absolute;top:0;left:0;width: 0px;height: 0px;display: block;border-width: 12px;border-style: solid;border-color: #eee transparent transparent #eee;
+	i{position: absolute;top: -12px;left: -12px;color: #fff;font-size: 12px;}
+}
+
