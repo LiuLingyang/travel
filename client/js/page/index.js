@@ -1,51 +1,10 @@
-let service = require('../util/service');
+const Regular = require('regularjs');
+const service = require('../util/service');
+const tpl = require('./index.html');
+const _ = require('../util/util');
 
-let tpl = '\
-<div class="m-info">\
-	<div class="blk">\
-		<input type="text" placeholder="出发地点" id="suggestId"/>\
-	</div>\
-	<div class="blk">\
-		<input type="text" placeholder="就诊医院" disabled r-model={destination}/>\
-	</div>\
-	<div class="blk">\
-		<input type="text" placeholder="就诊时间" disabled r-model={time}/>\
-	</div>\
-</div>\
-<div class="m-drive f-cb">\
-	<div class="item item-1" r-class={{"item-1-active":mode=="self"}} on-click={this.changeMode("self")}>\
-		<div class="ttl">驾车出行</div>\
-		<div class="img"><img/></div>\
-	</div>\
-	<div class="item item-2" r-class={{"item-2-active":mode=="bus"}} on-click={this.changeMode("bus")}>\
-		<div class="ttl">公共交通出行</div>\
-		<div class="img"><img/></div>\
-	</div>\
-	<div class="item item-3" r-class={{"item-3-active":mode=="taxi"}} on-click={this.changeMode("taxi")}>\
-		<div class="ttl">打车出行</div>\
-		<div class="img"><img/></div>\
-	</div>\
-</div>\
-<div class="m-trip f-cb" r-hide={step==0}>\
-	<div class="ln"><div class="wrd"><span class="f-fwb">行程路线：</span>经过平海路达到终点</div></div>\
-	<div class="ln ln-1"><div class="wrd"><span class="f-fwb">行程时间：</span>50min</div></div>\
-	<div class="ln ln-1"><div class="wrd"><span class="f-fwb">公里里程：</span>40公里</div></div>\
-	<div class="ln ln-1"><div class="wrd"><span class="f-fwb">繁忙程度：</span>中</div></div>\
-	<div class="ln ln-1"><div class="wrd"><span class="f-fwb">拥堵程度：</span>轻度拥堵</div></div>\
-	<div class="ln"><div class="wrd">本行程共减少碳排量0.222kg</div></div>\
-	<div class="ln"><div class="wrd">有35%的杭州市民选中与您同样的出行方式</div></div>\
-</div>\
-<div class="m-plan" r-hide={step==0 || step==1}>\
-	您已经选定出行规划<br>\
-	距离建议出行时间还有<b>10小时20分钟</b><br>\
-	您的就诊号是<b>50</b>号，当前到了<b>100</b>号\
-</div>\
-<div class="m-confirm">\
-	<div class="u-btn" on-click={this.confirm($event)}>{btnMessage}</div>\
-</div>\
-'
-
-let app = Regular.extend({
+const travelArr = ['route','duration','distance','busy','description','carbon','modePercent'];
+const app = Regular.extend({
 
     template: tpl,
 
@@ -57,8 +16,6 @@ let app = Regular.extend({
     	this.supr(data);
 
 		this.initMap();
-
-		this.getFullInfo();
 
 		this.$watch('step',step => {
 			if(step==0){
@@ -83,23 +40,31 @@ let app = Regular.extend({
 		});
     },
 
-    getFullInfo(){
+    getUserInfo(){
     	let data = this.data;
 
-    	service.get().then(result => {
+    	service.getUserInfo({uid:data.uid}).then(result => {
     		data.destination = result.destination;
-    		data.time = result.time;
+    		data.time = _.format(+result.time);
     		this.$update();
     	})
     },
 
     changeMode(mode){
-    	this.data.mode = mode;
+        let data = this.data;
+    	data.mode = mode;
+        if(data.result){
+            this.combineTravelInfo();
+        }
     },
 
     confirm(){
     	let data = this.data;
     	if(data.step==0){
+            if(!data.uid){
+                alert('请先输入市民卡号或身份证号！');
+                return;
+            }
     		if(!data.city && !data.origin){
     			alert('请先选择出发地点！');
     			return;
@@ -115,6 +80,9 @@ let app = Regular.extend({
     			if(!data.mode){
     				data.mode = 'self';
     			}
+                data.result = result;
+                this.combineTravelInfo();
+
     			this.$update();
     		})
     	}else if(data.step==1){
@@ -126,12 +94,33 @@ let app = Regular.extend({
     		}
     		service.confirm(options).then(result => {
     			data.step = 2;
-    			this.$update();
-    		})
+                this.$update();
+                return service.getPatient({
+                    uid:data.uid,
+                    time:data.time
+                });
+    		}).then(result => {
+                data.reserveTime = result.reserveTime;
+                data.patientNumber = result.patientNumber;
+                data.currentPatientNumber = result.currentPatientNumber;
+                this.$update();
+            })
     	}else if(data.step==2){
     		data.step = 0;
     		this.$update();
     	}
+    },
+
+    combineTravelInfo(){
+        let data = this.data;
+        let travelObj = data.result[data.mode];
+        travelArr.forEach(item => {
+            if(!!travelObj[item]){
+                data[item] = travelObj[item];
+            }else{
+                delete data[item];
+            }
+        })
     }
 
 })

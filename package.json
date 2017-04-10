@@ -8,6 +8,8 @@
   },
   "author": "liulingyang",
   "dependencies": {
+    "regularjs":"^0.5.2",
+    "raw-loader": "^0.5.1",
     "isomorphic-fetch": "^2.2.1",
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
