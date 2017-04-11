@@ -48,7 +48,8 @@ const app = Regular.extend({
 
     	service.getUserInfo({uid:data.uid}).then(result => {
     		data.destination = result.destination;
-    		data.time = _.format(+result.time);
+            data.time = result.time;
+    		data.formatTime = _.format(+result.time);
     		this.$update();
     	})
     },
