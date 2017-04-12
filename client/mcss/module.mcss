@@ -21,6 +21,7 @@
 		color:#fbb121;
 		&-active{border-top:1px solid #fbb121;border-bottom:1px solid transparent;}
 		.img{background-position:4px -63px;}
+		.u-trig{border-color: #fbb121 transparent transparent #fbb121;}
 	}
 	.item-2{
 		color:#08bd04;
@@ -32,6 +33,7 @@
 		color:#56c0ea;border-right:0;
 		&-active{border-top:1px solid #56c0ea;border-bottom:1px solid transparent;}
 		.img{background-position:7px -124px;}
+		.u-trig{border-color: #56c0ea transparent transparent #56c0ea;}
 	}
 }
 

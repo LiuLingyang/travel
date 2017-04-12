@@ -18,6 +18,7 @@ let service = {
 	search(data){
 		// return new Promise((resolve, reject) => {
 		//     resolve({
+		//     	recommendation:1,
 		// 	    bus:{
 		// 	      	route:'步行，地铁1号线(湘湖--临平)到达终点',   //行程路线
 		// 	      	duration:50,                  //行程时间（分钟）

@@ -4,6 +4,11 @@ const tpl = require('./index.html');
 const _ = require('../util/util');
 
 const travelArr = ['route','duration','distance','busy','description','carbon','modePercent'];
+const modeMap = {
+    1:'bus',
+    2:'self',
+    3:'taxi'
+}
 const app = Regular.extend({
 
     template: tpl,
@@ -82,7 +87,7 @@ const app = Regular.extend({
     		service.search(options).then(result => {
     			data.step = 1;
     			if(!data.mode){
-    				data.mode = 'self';
+    				data.mode = result['recommendation'];
     			}
                 data.result = result;
                 this.combineTravelInfo();
@@ -94,7 +99,8 @@ const app = Regular.extend({
     			city:data.city,
     			origin:data.origin,
     			destination:data.destination,
-    			time:data.time
+    			time:data.time,
+                type:data.mode
     		}
     		service.confirm(options).then(result => {
     			data.step = 2;
@@ -117,7 +123,7 @@ const app = Regular.extend({
 
     combineTravelInfo(){
         let data = this.data;
-        let travelObj = data.result[data.mode];
+        let travelObj = data.result[modeMap[data.mode]];
         travelArr.forEach(item => {
             if(!!travelObj[item]){
                 data[item] = travelObj[item];
