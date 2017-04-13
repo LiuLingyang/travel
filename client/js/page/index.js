@@ -96,6 +96,7 @@ const app = Regular.extend({
     		})
     	}else if(data.step==1){
     		let options = {
+                uid:data.uid,
     			city:data.city,
     			origin:data.origin,
     			destination:data.destination,

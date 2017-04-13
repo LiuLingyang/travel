@@ -4,9 +4,13 @@
   "description": "travel",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lanberts/travel.git"
+    "url": "https://github.com/LiuLingyang/travel.git"
   },
   "author": "liulingyang",
+  "scripts": {
+    "start": "webpack",
+    "mcss":"mcss -c client/mcss/mcss.json"
+  },
   "dependencies": {
     "regularjs":"^0.5.2",
     "raw-loader": "^0.5.1",
@@ -15,6 +19,7 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "webpack": "^2.2.0",
-    "webpack-stream": "^3.2.0"
+    "webpack-stream": "^3.2.0",
+    "copy-webpack-plugin": "^1.1.1"
   }
 }
