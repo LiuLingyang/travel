@@ -1,8 +1,8 @@
 <div class="m-info">
-	<div class="blk">
+	<div class="blk" r-hide={destination}>
 		<input type="number" class="f-bg uid" placeholder="市民卡号或身份证号" r-model={uid} on-change={this.getUserInfo($event)}/>
 	</div>
-	<div class="blk">
+	<div class="blk" r-hide={step==2}>
 		<input type="text" class="f-bg source" placeholder="出发地点" id="suggestId"/>
 	</div>
 	<div class="blk">
@@ -11,6 +11,11 @@
 	<div class="blk">
 		<input type="text" class="f-bg time" placeholder="就诊时间" disabled r-model={formatTime}/>
 	</div>
+</div>
+<div class="f-bg m-plan" r-hide={step==0 || step==1}>
+	您已经选定出行规划<br>
+	距离建议出行时间还有<b>{reserveTime}</b><br>
+	您的就诊号是<b>{patientNumber}</b>号，当前到了<b>{currentPatientNumber}</b>号
 </div>
 <div class="m-drive f-cb">
 	<div class="item item-1" r-class={{"item-1-active":mode==2}} on-click={this.changeMode(2)}>
@@ -37,17 +42,13 @@
 </div>
 <div class="m-trip f-cb" r-hide={step==0}>
 	<div class="f-bg ln route" r-hide={!route}><div class="wrd"><span class="f-fwb">行程路线：</span>{route}</div></div>
-	<div class="f-bg ln ln-1 duration" r-hide={!duration}><div class="wrd"><span class="f-fwb">行程时间：</span>{duration}min</div></div>
-	<div class="f-bg ln ln-1 distance" r-hide={!distance}><div class="wrd"><span class="f-fwb">公里里程：</span>{distance}公里</div></div>
+	<div class="f-bg ln ln-1 duration" r-hide={!duration}><div class="wrd"><span class="f-fwb">行程时间：</span>{duration}</div></div>
+	<div class="f-bg ln ln-1 distance" r-hide={!distance}><div class="wrd"><span class="f-fwb">公里里程：</span>{distance}</div></div>
 	<div class="f-bg ln ln-1 busy" r-hide={!busy}><div class="wrd"><span class="f-fwb">繁忙程度：</span>{busy}</div></div>
 	<div class="f-bg ln ln-1 description" r-hide={!description}><div class="wrd"><span class="f-fwb">拥堵程度：</span>{description}</div></div>
+	<div class="f-bg ln ln-1 cost" r-hide={!cost}><div class="wrd"><span class="f-fwb">行程花费：</span>{cost}</div></div>
 	<div class="f-bg ln carbon" r-hide={!carbon}><div class="wrd">本行程共减少碳排量{carbon}kg</div></div>
 	<div class="f-bg ln modePercent" r-hide={!modePercent}><div class="wrd">有{modePercent}的杭州市民选中与您同样的出行方式</div></div>
-</div>
-<div class="f-bg m-plan" r-hide={step==0 || step==1}>
-	您已经选定出行规划<br>
-	距离建议出行时间还有<b>{reserveTime}</b><br>
-	您的就诊号是<b>{patientNumber}</b>号，当前到了<b>{currentPatientNumber}</b>号
 </div>
 <div class="m-confirm">
 	<div class="u-btn" on-click={this.confirm($event)}>{btnMessage}</div>

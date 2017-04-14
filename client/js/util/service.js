@@ -21,12 +21,13 @@ let service = {
 		//     	recommendation:1,
 		// 	    bus:{
 		// 	      	route:'步行，地铁1号线(湘湖--临平)到达终点',   //行程路线
-		// 	      	duration:50,                  //行程时间（分钟）
-		// 	      	distance:60,                  //行程距离（公里）  
+		// 	      	duration:'8分钟',                  //行程时间（分钟）
+		// 	      	distance:'3公里',                  //行程距离（公里）  
 		// 	      	busy:'中',                    //繁忙程度
 		// 	      	description:'轻度',           //拥堵程度
 		// 	      	carbon:0.222,                 //减少的碳排量（千克）
-		// 	      	modePercent:'30%'             //同种出行方式占比 
+		// 	      	modePercent:'30%',            //同种出行方式占比 
+		// 			cost:'2元'                    //费用
 		// 	    },
 		// 	    self:{
 		// 	        route:'经过秋涛路、解放东路、解放路到达终点',
@@ -39,7 +40,8 @@ let service = {
 		// 	    taxi:{
 		// 	      	duration:30,
 		// 	      	distance:50,
-		// 	      	modePercent:'20%'
+		// 	      	modePercent:'20%',
+		// 	      	cost:'30元'
 		// 	    }
 		// 	});
 		// });

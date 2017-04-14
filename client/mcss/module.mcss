@@ -40,19 +40,20 @@
 .m-trip{
 	padding:10px;font-size:14px;
 	.ln{
-		float:left;width:100%;height:32px;line-height:32px;
+		float:left;width:100%;line-height:32px;
 		&-1{width:50%;}
 		.wrd{padding-left:17px;}
 	}
-	.route{background-position:0 -355px;}
+	/*.route{background-position:0 -355px;}*/
 	.duration{background-position:0 -423px;}
 	.distance{background-position:0 -326px;}
 	.busy{background-position:0 -456px;}
 	.description{background-position:0 -392px;}
+	.cost{background-position:0 -628px;}
 }
 
 .m-plan{
-	margin:0 10px;background-color:#ffcc66;padding-left:40px;line-height:24px;font-size:14px;background-position:14px -510px;
+	margin:10px;background-color:#f9f3e7;padding-left:40px;line-height:24px;font-size:14px;background-position:14px -510px;border:1px solid #f1ae1f;
 	b{color:#ff3300;}
 }
 

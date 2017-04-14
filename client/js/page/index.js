@@ -3,7 +3,7 @@ const service = require('../util/service');
 const tpl = require('./index.html');
 const _ = require('../util/util');
 
-const travelArr = ['route','duration','distance','busy','description','carbon','modePercent'];
+const travelArr = ['route','duration','distance','busy','description','carbon','modePercent','cost'];
 const modeMap = {
     1:'bus',
     2:'self',
@@ -50,7 +50,6 @@ const app = Regular.extend({
 
     getUserInfo(){
     	let data = this.data;
-
     	service.getUserInfo({uid:data.uid}).then(result => {
     		data.destination = result.destination;
             data.time = result.time;
