@@ -78,6 +78,7 @@ const app = Regular.extend({
     			return;
     		}
     		let options = {
+                uid:data.uid,
     			city:data.city,
     			origin:data.origin,
     			destination:data.destination,
