@@ -3,7 +3,7 @@
 		<input type="number" class="f-bg uid" placeholder="市民卡号或身份证号" r-model={uid} on-change={this.getUserInfo($event)}/>
 	</div>
 	<div class="blk" r-hide={step==2}>
-		<input type="text" class="f-bg source" placeholder="出发地点" id="suggestId"/>
+		<input type="text" class="f-bg source" placeholder="出发地点" id="suggestId" r-model={origin}/>
 	</div>
 	<div class="blk">
 		<input type="text" class="f-bg destination" placeholder="就诊医院" disabled r-model={destination}/>

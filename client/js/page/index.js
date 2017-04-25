@@ -34,7 +34,9 @@ const app = Regular.extend({
     },
 
     initMap(){
+        let self = this;
     	let data = this.data;
+
 		let ac = new BMap.Autocomplete(
 			{
                 input:"suggestId",
@@ -44,8 +46,28 @@ const app = Regular.extend({
 		ac.addEventListener("onconfirm", function(event) {
 			let value = event.item.value;
 			data.city = value.city;
-			data.origin = value.business;
+			data.origin = value.city + value.district + value.business;
 		});
+
+        //定位当前位置
+        if(!data.origin){
+            let geolocation = new BMap.Geolocation();
+            let myGeo = new BMap.Geocoder();
+            geolocation.getCurrentPosition(function(r){
+                if(this.getStatus() == BMAP_STATUS_SUCCESS){
+                    myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), function(result){  
+                        if (result){
+                            data.city = result.addressComponents && result.addressComponents.city;
+                            data.origin = result.address;
+                            self.$update();
+                        }
+                    });
+                }else {
+                    alert('failed'+this.getStatus());
+                }        
+            },{enableHighAccuracy: true})
+        }
+        
     },
 
     getUserInfo(){
