@@ -1,5 +1,6 @@
 let fetch = require('../util/fetch');
 
+const hostIp = 'http://122.224.104.142:9913';
 let service = {
 
 	getUserInfo(data){
@@ -9,7 +10,7 @@ let service = {
 		// 		time:'1490774273429'             //就诊时间
 		// 	});
 		// });
-		return fetch('http://122.224.104.142:9913/odhbase/rest/history',{
+		return fetch(hostIp + '/odhbase/rest/history',{
 			method:'GET',
 			data:data
 		});
@@ -45,7 +46,7 @@ let service = {
 		// 	    }
 		// 	});
 		// });
-		return fetch('http://122.224.104.142:9913/odhbase/rest/od',{
+		return fetch(hostIp + '/odhbase/rest/od',{
 			method:'POST',
 			data:data
 		});
@@ -57,7 +58,7 @@ let service = {
 				
 		// 	});
 		// });
-		return fetch('http://122.224.104.142:9913/odhbase/rest/record',{
+		return fetch(hostIp + '/odhbase/rest/record',{
 			method:'POST',
 			data:data
 		});
@@ -71,7 +72,7 @@ let service = {
 		// 	    currentPatientNumber: 10
 		// 	});
 		// });
-		return fetch('http://122.224.104.142:9913/odhbase/rest/patient/number',{
+		return fetch(hostIp + '/odhbase/rest/patient/number',{
 			method:'GET',
 			data:data
 		});
