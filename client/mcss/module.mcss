@@ -53,8 +53,12 @@
 }
 
 .m-plan{
-	margin:10px;background-color:#f9f3e7;padding-left:40px;line-height:24px;font-size:14px;background-position:14px -510px;border:1px solid #f1ae1f;
+	position:relative;margin:10px;background-color:#faf0cd;line-height:24px;font-size:14px;box-shadow: 0px 5px 5px #d4c4a3;border-radius: 18px;
 	b{color:#ff3300;}
+	.ttl{position: absolute;color:#f00;font-size:24px;top:-9px;left:40px;}
+	.info{padding-left:20px;margin-bottom:30px;line-height: 30px;padding-top:20px;}
+	.plan{background-position:20px -510px;padding-left:50px;}
+	.confirm{padding-top:150px;padding-bottom: 20px;font-size: 16px;background:url('../img/hospital.png') no-repeat center center;}
 }
 
 .m-confirm{

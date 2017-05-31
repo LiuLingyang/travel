@@ -1,4 +1,4 @@
-<div class="m-info">
+<div class="m-info" r-hide={step==2}>
 	<div class="blk" r-hide={destination}>
 		<input type="number" class="f-bg uid" placeholder="市民卡号或身份证号" r-model={uid} on-change={this.getUserInfo($event)}/>
 	</div>
@@ -12,10 +12,17 @@
 		<input type="text" class="f-bg time" placeholder="就诊时间" disabled r-model={formatTime}/>
 	</div>
 </div>
-<div class="f-bg m-plan" r-hide={step==0 || step==1}>
-	您已经选定出行规划<br>
-	距离建议出行时间还有<b>{reserveTime}</b><br>
-	您的就诊号是<b>{patientNumber}</b>号，当前到了<b>{currentPatientNumber}</b>号
+<div class="m-plan" r-hide={step==0 || step==1}>
+	<div class="ttl">出行建议</div>
+	<div class="info">
+		<div class="">地点：{origin}</div>
+		<div class="">医院：{destination}</div>
+		<div class="">时间：{formatTime}</div>
+	</div>
+	<div class="f-bg plan">您已经选定出行规划<br>距离建议出行时间还有<b>{reserveTime}</b><br>您的就诊号是<b>{patientNumber}</b>号，当前到了<b>{currentPatientNumber}</b>号</div>
+	<div class="confirm">
+		<div class="u-btn" on-click={this.confirm($event)}>更改出行方式</div>
+	</div>
 </div>
 <div class="m-drive f-cb">
 	<div class="item item-1" r-class={{"item-1-active":mode==2}} on-click={this.changeMode(2)}>
@@ -50,6 +57,6 @@
 	<div class="f-bg ln carbon" r-hide={!carbon}><div class="wrd">本行程共减少碳排量{carbon}kg</div></div>
 	<div class="f-bg ln modePercent" r-hide={!modePercent}><div class="wrd">有{modePercent}的杭州市民选中与您同样的出行方式</div></div>
 </div>
-<div class="m-confirm">
+<div class="m-confirm" r-hide={step==2}>
 	<div class="u-btn" on-click={this.confirm($event)}>{btnMessage}</div>
 </div>
