@@ -11,7 +11,7 @@
 }
 
 .m-drive{
-	width:100%;
+	width:100%;padding-top: 10px;
 	.item{
 		position:relative;float:left;width:33.3%;border-right:1px solid #ddd;border-top:1px solid #ddd;border-bottom:1px solid #ddd;
 		.ttl{height:38px;line-height:38px;text-align:center;}
@@ -54,11 +54,11 @@
 
 .m-plan{
 	position:relative;margin:10px;background-color:#faf0cd;line-height:24px;font-size:14px;box-shadow: 0px 5px 5px #d4c4a3;border-radius: 18px;
-	b{color:#ff3300;}
-	.ttl{position: absolute;color:#f00;font-size:24px;top:-9px;left:40px;}
-	.info{padding-left:20px;margin-bottom:30px;line-height: 30px;padding-top:20px;}
+	b{color:#ff3300;font-size:18px;}
+	.ttl{color:#fff;font-size:20px;height:50px;line-height:50px;padding-left:20px;background: #fcb122;border-top-left-radius:18px;border-top-right-radius:18px;}
+	.info{padding-top:10px;padding-left:20px;margin-bottom:20px;line-height: 30px;}
 	.plan{background-position:20px -510px;padding-left:50px;}
-	.confirm{padding-top:150px;padding-bottom: 20px;font-size: 16px;background:url('../img/hospital.png') no-repeat center center;}
+	.confirm{padding-top:20px;padding-bottom: 20px;font-size: 16px;}
 }
 
 .m-confirm{

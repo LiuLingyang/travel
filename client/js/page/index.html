@@ -25,21 +25,21 @@
 	</div>
 </div>
 <div class="m-drive f-cb">
-	<div class="item item-1" r-class={{"item-1-active":mode==2}} on-click={this.changeMode(2)}>
+	<div class="item item-1" r-class={{"item-1-active":mode==2}} {#if step!=2}on-click={this.changeMode(2)}{/if}>
 		<div class="ttl">驾车出行</div>
 		<div class="f-bg img"></div>
 		<span class="u-trig" r-hide={result.recommendation!=2}>
 			<i>荐</i>
 		</span>
 	</div>
-	<div class="item item-2" r-class={{"item-2-active":mode==1}} on-click={this.changeMode(1)}>
+	<div class="item item-2" r-class={{"item-2-active":mode==1}} {#if step!=2}on-click={this.changeMode(1)}{/if}>
 		<div class="ttl">公共交通出行</div>
 		<div class="f-bg img"></div>
 		<span class="u-trig" r-hide={result.recommendation!=1}>
 			<i>荐</i>
 		</span>
 	</div>
-	<div class="item item-3" r-class={{"item-3-active":mode==3}} on-click={this.changeMode(3)}>
+	<div class="item item-3" r-class={{"item-3-active":mode==3}} {#if step!=2}on-click={this.changeMode(3)}{/if}>
 		<div class="ttl">打车出行</div>
 		<div class="f-bg img"></div>
 		<span class="u-trig" r-hide={result.recommendation!=3}>
