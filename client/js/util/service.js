@@ -1,6 +1,6 @@
 let fetch = require('../util/fetch');
 
-const hostIp = 'http://122.224.104.142:9913';
+const hostIp = 'http://116.62.148.154:8080';
 let service = {
 
 	getUserInfo(data){
