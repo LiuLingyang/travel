@@ -55,8 +55,8 @@
 	<div class="f-bg ln route" r-hide={!route}><div class="wrd"><span class="f-fwb">行程路线：</span>{route}</div></div>
 	<div class="f-bg ln ln-1 duration" r-hide={!duration}><div class="wrd"><span class="f-fwb">行程时间：</span>{duration}</div></div>
 	<div class="f-bg ln ln-1 distance" r-hide={!distance}><div class="wrd"><span class="f-fwb">公里里程：</span>{distance}</div></div>
-	<div class="f-bg ln ln-1 busy" r-hide={!busy}><div class="wrd"><span class="f-fwb">繁忙程度：</span>{busy}</div></div>
-	<div class="f-bg ln ln-1 description" r-hide={!description}><div class="wrd"><span class="f-fwb">拥堵程度：</span>{description}</div></div>
+	<div class="f-bg ln ln-1 busy" r-hide={!busy || mode==1}><div class="wrd"><span class="f-fwb">繁忙程度：</span>{busy}</div></div>
+	<div class="f-bg ln ln-1 description" r-hide={!description}><div class="wrd"><span class="f-fwb">舒适度：</span>{description}</div></div>
 	<div class="f-bg ln ln-1 cost" r-hide={!cost}><div class="wrd"><span class="f-fwb">行程花费：</span>{cost}</div></div>
 	<div class="f-bg ln carbon" r-hide={!carbon}><div class="wrd">本行程共减少碳排量{carbon}</div></div>
 	<div class="f-bg ln modePercent" r-hide={!modePercent}><div class="wrd">有{modePercent}的杭州市民选中与您同样的出行方式</div></div>
