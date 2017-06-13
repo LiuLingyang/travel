@@ -130,7 +130,8 @@ const app = Regular.extend({
                 this.$update();
                 return service.getPatient({
                     uid:data.uid,
-                    time:data.time
+                    time:data.time,
+                    duration:data.duration
                 });
     		}).then(result => {
                 data.reserveTime = result.reserveTime;
