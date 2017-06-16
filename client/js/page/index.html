@@ -59,7 +59,7 @@
 	<div class="f-bg ln ln-1 description" r-hide={!description}><div class="wrd"><span class="f-fwb">舒适度：</span>{description}</div></div>
 	<div class="f-bg ln ln-1 cost" r-hide={!cost}><div class="wrd"><span class="f-fwb">行程花费：</span>{cost}</div></div>
 	<div class="f-bg ln carbon" r-hide={!carbon}><div class="wrd">本行程共减少碳排量{carbon}</div></div>
-	<div class="f-bg ln modePercent" r-hide={!modePercent}><div class="wrd">有{modePercent}的杭州市民选中与您同样的出行方式</div></div>
+	<div class="f-bg ln modePercent" r-hide={!modePercent || mode==1 || mode==2}><div class="wrd">有{modePercent}的杭州市民选中与您同样的出行方式</div></div>
 </div>
 <div class="m-confirm" r-hide={step==2}>
 	<div class="u-btn" on-click={this.confirm($event)}>{btnMessage}</div>
