@@ -30,6 +30,7 @@ a,a:hover{color:#333;}
 .f-fl{float:left;}
 .f-fr{float:right;}
 .f-fwb{font-weight:bold;}
+.f-tul{text-decoration: underline;}
 .f-bg{background:url('../img/sprite.png') no-repeat -9999px -9999px;}
 
 /* map */

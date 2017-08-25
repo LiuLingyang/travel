@@ -59,8 +59,12 @@
 	.info{padding-top:10px;padding-left:20px;margin-bottom:20px;line-height: 30px;}
 	.plan{background-position:20px -510px;padding-left:50px;}
 	.confirm{padding-top:20px;padding-bottom: 20px;font-size: 16px;}
+	.detail{
+		margin-left:10px;color:#f90;
+	}
 }
 
 .m-confirm{
 	margin-top:10px;
+	.tip{font-size:14px;margin:10px;}
 }

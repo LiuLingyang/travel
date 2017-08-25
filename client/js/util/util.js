@@ -13,30 +13,41 @@ function obj2query(data){
  * 时期格式化
  */
 let fmap = {
-	yyyy(date){
-		return date.getFullYear();
-	},
-	MM(date){
-		return fix(date.getMonth() + 1);
-	},
-	dd(date){
-		return fix(date.getDate());
-	},
-	HH(date){
-		return fix(date.getHours());
-	},
-	mm(date){
-		return fix(date.getMinutes());
-	},
-	ss(date){
-		return fix(date.getSeconds());
-	}
+  yyyy(date) {
+    return date.getFullYear();
+  },
+  MM(date) {
+    return fix(date.getMonth() + 1);
+  },
+  dd(date) {
+    return fix(date.getDate());
+  },
+  HH(date) {
+    return fix(date.getHours());
+  },
+  mm(date) {
+    return fix(date.getMinutes());
+  },
+  ss(date) {
+    return fix(date.getSeconds());
+  }
+};
+
+let keys = Object.keys || function (obj) {
+  let ret = [];
+  for (let i in obj) {
+    ret.push(i);
+  }
+  return ret;
+};
+
+let trunk = new RegExp(keys(fmap).join('|'), 'g');
+
+function fix(str) {
+  str = '' + str;
+  return str.length <= 1 ? '0' + str : str;
 }
-let trunk = new RegExp(Object.keys(fmap).join('|'),'g');
-function fix(str){
-  str = '' + (str || '');
-  return str.length <= 1? '0' + str : str;
-}
+
 function format(value,format){
 	format = format || 'yyyy-MM-dd HH:mm:ss';
 	if(!value) return;

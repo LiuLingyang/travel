@@ -35,6 +35,9 @@ function fetch(url, opt = {}) {
           switch (json.code) {
             case 200:
               return json.data;
+            case 404:
+              alert(json.msg);
+            return;
             default:
               throw json.msg;
           }

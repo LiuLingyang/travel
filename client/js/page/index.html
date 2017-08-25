@@ -22,13 +22,13 @@
 	{#if currentPatientNumber==-1}
 	<div class="plan" style="padding-left:20px;">您的预约已过号，请重新预约</div>
 	{#else}
-	<div class="f-bg plan">您已经选定出行规划<br>距离建议出行时间还有<b>{reserveTime}</b><br>您的就诊号是<b>{patientNumber}</b>号，当前到了<b>{currentPatientNumber}</b>号</div>
+	<div class="f-bg plan">您已经选定出行规划<span class="detail" on-click={detailShow = !detailShow}>查看详细</span><br>距离建议出行时间还有<b>{reserveTime}</b><br>您的就诊号是<b>{patientNumber}</b>号<br><span class="f-tul" on-click={this.coming($event)}>当前叫号号码？</span></div>
 	{/if}
 	<div class="confirm">
 		<div class="u-btn" on-click={this.confirm($event)} r-hide={currentPatientNumber==-1}>更改出行方式</div>
 	</div>
 </div>
-<div class="m-drive f-cb">
+<div class="m-drive f-cb" r-hide={!detailShow}>
 	<div class="item item-1" r-class={{"item-1-active":mode==2}} {#if step!=2}on-click={this.changeMode(2)}{/if}>
 		<div class="ttl">驾车出行</div>
 		<div class="f-bg img"></div>
@@ -51,16 +51,19 @@
 		</span>
 	</div>
 </div>
-<div class="m-trip f-cb" r-hide={step==0}>
+<div class="m-trip f-cb" r-hide={step==0 || !detailShow}>
 	<div class="f-bg ln route" r-hide={!route}><div class="wrd"><span class="f-fwb">行程路线：</span>{route}</div></div>
+	<div class="f-bg ln route" r-hide={!briefRoute}><div class="wrd"><span class="f-fwb">简要路线：</span>{briefRoute}</div></div>
 	<div class="f-bg ln ln-1 duration" r-hide={!duration}><div class="wrd"><span class="f-fwb">行程时间：</span>{duration}</div></div>
 	<div class="f-bg ln ln-1 distance" r-hide={!distance}><div class="wrd"><span class="f-fwb">公里里程：</span>{distance}</div></div>
 	<div class="f-bg ln ln-1 busy" r-hide={!busy || mode==1}><div class="wrd"><span class="f-fwb">繁忙程度：</span>{busy}</div></div>
-	<div class="f-bg ln ln-1 description" r-hide={!description}><div class="wrd"><span class="f-fwb">舒适度：</span>{description}</div></div>
+	<div class="f-bg ln ln-1 description" r-hide={!description || mode==2}><div class="wrd"><span class="f-fwb">舒适度：</span>{description}</div></div>
 	<div class="f-bg ln ln-1 cost" r-hide={!cost}><div class="wrd"><span class="f-fwb">行程花费：</span>{cost}</div></div>
+	<div class="f-bg ln car" r-hide={mode==1 || mode==3}><div class="wrd" on-click={this.coming($event)}><span class="f-tul">去预留停车位</span></div></div>
 	<div class="f-bg ln carbon" r-hide={!carbon}><div class="wrd">本行程共减少碳排量{carbon}</div></div>
 	<div class="f-bg ln modePercent" r-hide={!modePercent || mode==1 || mode==2}><div class="wrd">有{modePercent}的杭州市民选中与您同样的出行方式</div></div>
 </div>
 <div class="m-confirm" r-hide={step==2}>
 	<div class="u-btn" on-click={this.confirm($event)}>{btnMessage}</div>
+	<div class="tip" r-hide={step!=0}>“数据仅供参考，以实际情况为准”</div>
 </div>
