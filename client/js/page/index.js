@@ -122,7 +122,8 @@ const app = Regular.extend({
                 data.step = 2;
                 data.origin = result.origin;
                 data.destination = result.destination;
-                data.formatTime = result.time;
+                data.time = result.time;
+                data.formatTime = _.format(+result.time);
                 this.$update();
 
                 let travel_way = result.travel_way;

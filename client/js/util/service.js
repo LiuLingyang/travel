@@ -1,7 +1,7 @@
 let fetch = require('../util/fetch');
 
 const hostIp = 'http://116.62.148.154:8080';
-const mock = false;
+const mock = true;
 
 let service = {
 
@@ -99,7 +99,7 @@ let service = {
 		    resolve({
 					"origin": "浙江省杭州市江干区钱江路",
 	        "destination": "杭州市妇产科医院",
-	        "time": "2017-09-29 19:30:00",
+	        "time": "1502257800000",
 	        "travel_way": "驾车出行"
 				});
 			});
