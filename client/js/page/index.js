@@ -23,6 +23,9 @@ const app = Regular.extend({
 
 		// this.initMap();
 
+        //初始化身份证信息
+        this.initId();
+
 		this.$watch('step',step => {
 			if(step==0){
                 data.detailShow = true;
@@ -38,6 +41,19 @@ const app = Regular.extend({
 
         this.$watch('origin',origin => {
             if(!data.used) data.step = 0;
+        })
+    },
+
+    initId(){
+        let data = this.data;
+        let u = _.getQueryByKey('u');
+        if(!u) return;
+        service.getCodeDi({
+            codeDi:u
+        }).then(result => {
+            data.uid = result.Di;
+            this.getUserInfo();
+            this.$update();
         })
     },
 
@@ -205,10 +221,32 @@ const app = Regular.extend({
             });
         }).then(result => {
             data.reserveTime = result.reserveTime;
+            data.finishTime = _.format(new Date().getTime() + data.reserveTime*1000);
             data.patientNumber = result.patientNumber;
             data.currentPatientNumber = result.currentPatientNumber;
+            if(this.timer) clearInterval(this.timer);
+            this.timer = setInterval(this.getLastTime.bind(this),0);
             this.$update();
         })
+    },
+
+    getLastTime(){
+        let data = this.data;
+        var EndTime= new Date(data.finishTime);
+        var NowTime = new Date();
+        var t =EndTime.getTime() - NowTime.getTime();
+        var d=0;
+        var h=0;
+        var m=0;
+        var s=0;
+        if(t>=0){
+          d=Math.floor(t/1000/60/60/24);
+          h=Math.floor(t/1000/60/60%24);
+          m=Math.floor(t/1000/60%60);
+          s=Math.floor(t/1000%60);
+        }
+        data.formatReserveTime = d + '天' + h + '小时' + m + '分' + s + '秒';
+        this.$update();
     },
 
     coming(){
@@ -216,7 +254,5 @@ const app = Regular.extend({
     }
 
 })
-
-
 
 new app().$inject('#app');

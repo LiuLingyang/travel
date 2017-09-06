@@ -32,7 +32,6 @@ let fmap = {
     return fix(date.getSeconds());
   }
 };
-
 let keys = Object.keys || function (obj) {
   let ret = [];
   for (let i in obj) {
@@ -40,14 +39,11 @@ let keys = Object.keys || function (obj) {
   }
   return ret;
 };
-
 let trunk = new RegExp(keys(fmap).join('|'), 'g');
-
 function fix(str) {
   str = '' + str;
   return str.length <= 1 ? '0' + str : str;
 }
-
 function format(value,format){
 	format = format || 'yyyy-MM-dd HH:mm:ss';
 	if(!value) return;
@@ -55,11 +51,27 @@ function format(value,format){
 	return format.replace( trunk, (cap) => fmap[cap]? fmap[cap](value): '');
 }
 
-
+/**
+ * @param  {[String]} key query键
+ * @param  {[String]} url
+ * @return {[String]} query值
+ */
+function getQueryByKey(key, url) {
+  if (!url) {
+    url = window.location.href;
+  }
+  key = key.replace(/[\[\]]/g, '\\$&');
+  var regex = new RegExp('[?&]' + key + '(=([^&#]*)|&|#|$)'),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
 
 module.exports = {
 	obj2query,
 	extend,
-    format
+  format,
+  getQueryByKey
 }

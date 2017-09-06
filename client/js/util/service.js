@@ -80,7 +80,7 @@ let service = {
 		if(mock){
 			return new Promise((resolve, reject) => {
 			    resolve({
-					reserveTime: "1小时15分钟",
+						reserveTime: 600000,
 				    patientNumber: 100,
 				    currentPatientNumber: 10
 				});
@@ -106,6 +106,21 @@ let service = {
 		}
 
 		return fetch(hostIp + '/odhbase/rest/getWayToTravel',{
+			method:'GET',
+			data:data
+		});
+	},
+
+	getCodeDi(data){
+		if(mock){
+			return new Promise((resolve, reject) => {
+		    resolve({
+					Di:'330724199204142913'
+				});
+			});
+		}
+
+		return fetch(hostIp + '/odhbase/rest/getCodeDi',{
 			method:'GET',
 			data:data
 		});
