@@ -1,7 +1,7 @@
 let fetch = require('../util/fetch');
 
 const hostIp = 'http://116.62.148.154:8080';
-const mock = true;
+const mock = false;
 
 let service = {
 
@@ -122,6 +122,13 @@ let service = {
 
 		return fetch(hostIp + '/odhbase/rest/getCodeDi',{
 			method:'GET',
+			data:data
+		});
+	},
+
+	count(data){
+		return fetch('http://bak.smkhmh.com/ss/gw/jkcx/dataflow.php',{
+			method:'POST',
 			data:data
 		});
 	},
