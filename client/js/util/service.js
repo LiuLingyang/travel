@@ -121,13 +121,13 @@ let service = {
 		}
 
 		return fetch(hostIp + '/odhbase/rest/getCodeDi',{
-			method:'GET',
+			method:'POST',
 			data:data
 		});
 	},
 
 	count(data){
-		return fetch('http://bak.smkhmh.com/ss/gw/jkcx/dataflow.php',{
+		return fetch(hostIp + '/ss/gw/jkcx/dataflow.php',{
 			method:'POST',
 			data:data
 		});
