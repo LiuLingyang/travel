@@ -112,9 +112,9 @@ const app = Regular.extend({
                 if(!result.travel_way || result.destination != result2.destination || result.time != result2.time){
                     this.initMap();
                     data.used = false;
-                    data.destination = result.destination;
-                    data.time = result.time;
-                    data.formatTime = _.format(+result.time);
+                    data.destination = result2.destination;
+                    data.time = result2.time;
+                    data.formatTime = _.format(+result2.time);
                 }else{
                     data.used = true;
                     data.step = 2;
