@@ -108,35 +108,34 @@ const app = Regular.extend({
             uid:data.uid,
             time:new Date().getTime()
         }).then(result => {
-            if(!result.travel_way){
-                this.initMap();
-                data.used = false;
-                service.getUserInfo({uid:data.uid}).then(result => {
+            service.getUserInfo({uid:data.uid}).then(result2 => {
+                if(!result.travel_way || result.destination != result2.destination || result.time != result2.time){
+                    this.initMap();
+                    data.used = false;
+                    data.destination = result.destination;
+                    data.time = result.time;
+                    data.formatTime = _.format(+result.time);
+                }else{
+                    data.used = true;
+                    data.step = 2;
+                    data.origin = result.origin;
                     data.destination = result.destination;
                     data.time = result.time;
                     data.formatTime = _.format(+result.time);
                     this.$update();
-                })
-            }else{
-                data.used = true;
-                data.step = 2;
-                data.origin = result.origin;
-                data.destination = result.destination;
-                data.time = result.time;
-                data.formatTime = _.format(+result.time);
-                this.$update();
-
-                let travel_way = result.travel_way;
-                if(travel_way == '驾车出行'){
-                    data.mode = 2;
-                }else if(travel_way == '公共交通出行'){
-                    data.mode = 1;
-                }else if(travel_way == '打车出行'){
-                    data.mode = 3;
+    
+                    let travel_way = result.travel_way;
+                    if(travel_way == '驾车出行'){
+                        data.mode = 2;
+                    }else if(travel_way == '公共交通出行'){
+                        data.mode = 1;
+                    }else if(travel_way == '打车出行'){
+                        data.mode = 3;
+                    }
+                    this.recordService();
+                    this.searchService(2);
                 }
-                this.recordService();
-                this.searchService(2);
-            }
+            })
         })
     },
 
@@ -184,6 +183,10 @@ const app = Regular.extend({
 
     searchService(step){
         let data = this.data;
+        if(!data.origin){
+            alert('请选择出发地点');
+            return;
+        }
         let options = {
             uid:data.uid,
             city:data.city,
@@ -204,6 +207,10 @@ const app = Regular.extend({
 
     recordService(){
         let data = this.data;
+        if(!data.origin){
+            alert('请选择出发地点');
+            return;
+        }
         let options = {
             uid:data.uid,
             city:data.city,
