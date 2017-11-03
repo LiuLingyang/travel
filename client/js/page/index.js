@@ -237,17 +237,17 @@ const app = Regular.extend({
             this.$update();
         })
 
-        service.count({
-            uid:data.uid,
-            time:data.time,
-            destination:data.destination,
-            origin:data.origin,
-            type:data.mode,
-            create_time:Date.now(),
-            edit_time:Date.now(),
-        }).then(result => {
-            debugger
-        })
+        // service.count({
+        //     uid:data.uid,
+        //     time:data.time,
+        //     destination:data.destination,
+        //     origin:data.origin,
+        //     type:data.mode,
+        //     create_time:Date.now(),
+        //     edit_time:Date.now(),
+        // }).then(result => {
+        //     debugger
+        // })
     },
 
     getLastTime(){
