@@ -89,7 +89,7 @@ const app = Regular.extend({
                         }
                     });
                 }else {
-                    alert('failed'+this.getStatus());
+                    _.message('failed'+this.getStatus());
                 }
             },{enableHighAccuracy: true})
         }else{
@@ -152,11 +152,11 @@ const app = Regular.extend({
     	let data = this.data;
     	if(data.step==0){
             if(!data.uid){
-                alert('请先输入市民卡号或身份证号！');
+                _.message('请先输入市民卡号或身份证号！','err');
                 return;
             }
     		if(!data.city && !data.origin){
-    			alert('请先选择出发地点！');
+    			_.message('请先选择出发地点！','err');
     			return;
     		}
             this.searchService();
@@ -184,7 +184,7 @@ const app = Regular.extend({
     searchService(step){
         let data = this.data;
         if(!data.origin){
-            alert('请选择出发地点');
+            _.message('请选择出发地点','err');
             return;
         }
         let options = {
@@ -208,7 +208,7 @@ const app = Regular.extend({
     recordService(){
         let data = this.data;
         if(!data.origin){
-            alert('请选择出发地点');
+            _.message('请选择出发地点','err');
             return;
         }
         let options = {
@@ -270,7 +270,7 @@ const app = Regular.extend({
     },
 
     coming(){
-        alert('该功能稍后推出');
+        _.message('该功能稍后推出');
     }
 
 })

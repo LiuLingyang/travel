@@ -1,4 +1,5 @@
 let extend = require('regularjs').util.extend;
+let MessageManager = require('../components/messageManager');
 
 function obj2query(data){
 	let query = '';
@@ -68,10 +69,24 @@ function getQueryByKey(key, url) {
   return decodeURIComponent(results[2].replace(/\+/g, ' '));
 }
 
+let messageManager;
+function message(message, status) {
+  if (!messageManager) {
+    messageManager = new MessageManager({
+      data: {}
+    }).$inject(document.body);
+  }
+
+  status = status || 'ok';
+
+  messageManager.add(message, status);
+}
+
 
 module.exports = {
 	obj2query,
 	extend,
   format,
-  getQueryByKey
+  getQueryByKey,
+  message
 }

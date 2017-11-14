@@ -1,5 +1,5 @@
 <div class="m-info" r-hide={step==2}>
-	<div class="blk" r-hide={destination}>
+	<div class="blk" style="display:none;">
 		<input type="number" class="f-bg uid" placeholder="市民卡号或身份证号" r-model={uid} on-change={this.getUserInfo($event)}/>
 	</div>
 	<div class="blk" r-hide={step==2}>
@@ -22,7 +22,7 @@
 	{#if currentPatientNumber==-1}
 	<div class="plan" style="padding-left:20px;">您的预约已过号，请重新预约</div>
 	{#else}
-	<div class="f-bg plan">您已经选定出行规划<span class="detail" on-click={detailShow = !detailShow}>查看详细</span><br>距离建议出行时间还有<b>{formatReserveTime}</b><br>您的就诊号是<b>{patientNumber}</b>号<br><span class="f-tul" on-click={this.coming($event)}>当前叫号号码</span></div>
+	<div class="f-bg plan">您已经选定出行规划<span class="detail" on-click={detailShow = !detailShow}>查看详细</span><br>距离建议出行时间还有<br><b>{formatReserveTime}</b><br>您的就诊号是<b>{patientNumber}</b>号<br><span class="f-tul" on-click={this.coming($event)}>当前叫号号码</span></div>
 	{/if}
 	<div class="confirm">
 		<div class="u-btn" on-click={this.confirm($event)} r-hide={currentPatientNumber==-1}>更改出行方式</div>
