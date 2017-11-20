@@ -15,7 +15,8 @@ const app = Regular.extend({
 
     data:{
     	step:0,
-        detailShow:true
+        detailShow:true,
+        city:'杭州'
     },
 
     config(data){
@@ -59,47 +60,78 @@ const app = Regular.extend({
 
     initMap(){
         let self = this;
-    	let data = this.data;
+        let data = this.data;
+        
+        if(!!this.AMap) return;
+        AMap.plugin(['AMap.Autocomplete','AMap.Geolocation'],function(){
+            var autoOptions = {
+                city: "杭州",
+                input:"suggestId"
+            };
+            self.AMap = new AMap.Autocomplete(autoOptions);
 
-        if(!!this.BMap) return;
-		this.BMap = new BMap.Autocomplete(
-			{
-                input:"suggestId",
-                location:'杭州'
+            AMap.event.addListener(self.AMap, "select", function(event){
+                var value = event.poi;
+                data.origin = value.district + value.name;
+                data.used = false;
+            });
+
+            //定位当前位置
+            if(!data.origin){
+                let geolocation = new AMap.Geolocation();
+                geolocation.getCurrentPosition();
+                AMap.event.addListener(geolocation, 'complete', function(event){
+                    data.origin = event.formattedAddress;
+                    self.$update();
+                });
             }
-		);
-		this.BMap.addEventListener("onconfirm", function(event) {
-			let value = event.item.value;
-			data.city = value.city;
-			data.origin = value.city + value.district + value.business;
-            data.used = false;
-		});
-
-        //定位当前位置
-        if(!data.origin){
-            let geolocation = new BMap.Geolocation();
-            let myGeo = new BMap.Geocoder();
-            geolocation.getCurrentPosition(function(r){
-                if(this.getStatus() == BMAP_STATUS_SUCCESS){
-                    myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), function(result){
-                        if (result){
-                            data.city = result.addressComponents && result.addressComponents.city;
-                            data.origin = result.address;
-                            self.$update();
-                        }
-                    });
-                }else {
-                    _.message('failed'+this.getStatus());
-                }
-            },{enableHighAccuracy: true})
-        }else{
-            setTimeout(() => {
-                data.origin = data.origin + ' '; //触发map autocomplete
-                self.$update();
-            },0)
-        }
+        })
 
     },
+
+    // initMap(){
+    //     let self = this;
+    // 	let data = this.data;
+
+    //     if(!!this.BMap) return;
+	// 	this.BMap = new BMap.Autocomplete(
+	// 		{
+    //             input:"suggestId",
+    //             location:'杭州'
+    //         }
+	// 	);
+	// 	this.BMap.addEventListener("onconfirm", function(event) {
+	// 		let value = event.item.value;
+	// 		data.city = value.city;
+	// 		data.origin = value.city + value.district + value.business;
+    //         data.used = false;
+	// 	});
+
+    //     //定位当前位置
+    //     if(!data.origin){
+    //         let geolocation = new BMap.Geolocation();
+    //         let myGeo = new BMap.Geocoder();
+    //         geolocation.getCurrentPosition(function(r){
+    //             if(this.getStatus() == BMAP_STATUS_SUCCESS){
+    //                 myGeo.getLocation(new BMap.Point(r.point.lng, r.point.lat), function(result){
+    //                     if (result){
+    //                         data.city = result.addressComponents && result.addressComponents.city;
+    //                         data.origin = result.address;
+    //                         self.$update();
+    //                     }
+    //                 });
+    //             }else {
+    //                 _.message('failed'+this.getStatus());
+    //             }
+    //         },{enableHighAccuracy: true})
+    //     }else{
+    //         setTimeout(() => {
+    //             data.origin = data.origin + ' '; //触发map autocomplete
+    //             self.$update();
+    //         },0)
+    //     }
+
+    // },
 
     getUserInfo(){
     	let data = this.data;
