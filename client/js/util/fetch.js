@@ -37,6 +37,7 @@ function fetch(url, opt = {}) {
               return json.data;
             case 404:
               _.message(json.msg,'err');
+              return json;
             return;
             default:
               throw json.msg;

@@ -98,7 +98,7 @@ let service = {
 			return new Promise((resolve, reject) => {
 				resolve({
 					"origin": "浙江省杭州市江干区钱江路",
-					"destination": "杭州市妇产科医院",
+					"destination": "市一医院",
 					"time": "1502257800000",
 					"travel_way": "驾车出行"
 				});

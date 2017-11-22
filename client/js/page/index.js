@@ -228,12 +228,19 @@ const app = Regular.extend({
         }
         service.search(options).then(result => {
             data.step = step || 1;
-            if(!data.mode){
-                data.mode = result['recommendation'];
+            if(result.code == 404){
+                data.mode = undefined;
+                travelArr.forEach(item => {
+                    delete data[item];
+                })
+            }else{
+                if(!data.mode){
+                    data.mode = result['recommendation'];
+                }
+                data.result = result;
+                this.combineTravelInfo();
+                this.$update();
             }
-            data.result = result;
-            this.combineTravelInfo();
-            this.$update();
         })
     },
 
