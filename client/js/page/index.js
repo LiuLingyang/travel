@@ -227,20 +227,20 @@ const app = Regular.extend({
             time:data.time
         }
         service.search(options).then(result => {
-            data.step = step || 1;
             if(result.code == 404){
                 data.mode = undefined;
                 travelArr.forEach(item => {
                     delete data[item];
                 })
             }else{
+                data.step = step || 1;
                 if(!data.mode){
                     data.mode = result['recommendation'];
                 }
                 data.result = result;
                 this.combineTravelInfo();
-                this.$update();
             }
+            this.$update();
         })
     },
 
@@ -268,7 +268,7 @@ const app = Regular.extend({
             });
         }).then(result => {
             data.reserveTime = result.reserveTime;
-            data.finishTime = _.format(new Date().getTime() + data.reserveTime*1000);
+            data.finishTime = _.format((new Date().getTime() + data.reserveTime*1000),'yyyy/MM/dd HH:mm:ss');
             data.patientNumber = result.patientNumber;
             data.currentPatientNumber = result.currentPatientNumber;
             if(this.timer) clearInterval(this.timer);
