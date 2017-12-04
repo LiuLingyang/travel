@@ -66,7 +66,7 @@
 
 .m-confirm{
 	margin:10px 0;
-	.tip{font-size:14px;margin:10px;}
+	.tip{font-size:14px;margin:10px;line-height:24px;}
 }
 
 .m-messages {

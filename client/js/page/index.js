@@ -77,14 +77,14 @@ const app = Regular.extend({
             });
 
             //定位当前位置
-            if(!data.origin){
-                let geolocation = new AMap.Geolocation();
-                geolocation.getCurrentPosition();
-                AMap.event.addListener(geolocation, 'complete', function(event){
-                    data.origin = event.formattedAddress;
-                    self.$update();
-                });
-            }
+            // if(!data.origin){
+            //     let geolocation = new AMap.Geolocation();
+            //     geolocation.getCurrentPosition();
+            //     AMap.event.addListener(geolocation, 'complete', function(event){
+            //         data.origin = event.formattedAddress;
+            //         self.$update();
+            //     });
+            // }
         })
 
     },
@@ -147,6 +147,7 @@ const app = Regular.extend({
                     data.destination = result2.destination;
                     data.time = result2.time;
                     data.formatTime = _.format(+result2.time);
+                    this.$update();
                 }else{
                     data.used = true;
                     data.step = 2;
